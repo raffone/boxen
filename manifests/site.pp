@@ -59,9 +59,9 @@ node default {
   include nginx
 
   # fail if FDE is not enabled
-  if $::root_encrypted == 'no' {
-    fail('Please enable full disk encryption and try again')
-  }
+  # if $::root_encrypted == 'no' {
+  #   fail('Please enable full disk encryption and try again')
+  # }
 
   # node versions
   include nodejs::v0_6
@@ -87,4 +87,72 @@ node default {
     ensure => link,
     target => $boxen::config::repodir
   }
+
+  # Ruby
+  $ruby_global = "1.9.3"
+
+  class { 'ruby::global':
+    version => $ruby_global
+  }
+
+  ruby::gem { "rapido-css for ${ruby_global}":
+    gem     => 'rapido-css',
+    ruby    => $ruby_global
+  }
+
+  ruby::gem { "sass-globbing for ${ruby_global}":
+    gem     => 'sass-globbing',
+    ruby    => $ruby_global
+  }
+
+  ruby::gem { "oily_png for ${ruby_global}":
+    gem     => 'oily_png',
+    ruby    => $ruby_global
+  }
+
+  ruby::plugin { 'rbenv-gemset':
+    ensure => 'v0.5.3',
+    source  => 'jf/rbenv-gemset'
+  }
+
+  # Node.js
+  $node_global = "v0.10"
+
+  class { 'nodejs::global':
+    version => $node_global
+  }
+
+  nodejs::module { [ 'coffee-script', 'grunt-cli' ]:
+    node_version => $node_global
+  }
+
+  # other modules
+  include adium
+  include alfred
+  include btsync
+  include ccleaner
+  include chrome
+  include cloudapp
+  include codekit
+  include dropbox
+  include firefox
+  include flux
+  include istatmenus4
+  include iterm2::dev
+  # include libreoffice
+  include mou
+  # include omnigraffle
+  include opera
+  include skype
+  include sourcetree
+  include spotify
+  include textexpander
+  include transmission
+  include transmit
+  include tunnelblick
+  include vagrant
+  include virtualbox
+  include macvim
+  include vlc
+
 }
