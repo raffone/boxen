@@ -51,12 +51,19 @@ Service {
 
 Homebrew::Formula <| |> -> Package <| |>
 
+define install_gems {
+  ruby::gem { "${name} for ${ruby_global}":
+    gem     => $name,
+    ruby    => $ruby_global
+  }
+}
+
 node default {
   # core modules, needed for most things
   include dnsmasq
   include git
   include hub
-  include nginx
+  # include nginx
 
   # fail if FDE is not enabled
   # if $::root_encrypted == 'no' {
@@ -79,7 +86,8 @@ node default {
     [
       'ack',
       'findutils',
-      'gnu-tar'
+      'gnu-tar',
+      'mackup'
     ]:
   }
 
@@ -89,34 +97,23 @@ node default {
   }
 
   # Ruby
-  $ruby_global = "1.9.3"
+  $ruby_global = '1.9.3'
 
   class { 'ruby::global':
     version => $ruby_global
   }
 
-  ruby::gem { "rapido-css for ${ruby_global}":
-    gem     => 'rapido-css',
-    ruby    => $ruby_global
-  }
+  $ruby_gems = [ 'rapido-css', 'sass-globbing', 'oily_png', 'bump' ]
 
-  ruby::gem { "sass-globbing for ${ruby_global}":
-    gem     => 'sass-globbing',
-    ruby    => $ruby_global
-  }
-
-  ruby::gem { "oily_png for ${ruby_global}":
-    gem     => 'oily_png',
-    ruby    => $ruby_global
-  }
+  install_gems { $ruby_gems: }
 
   ruby::plugin { 'rbenv-gemset':
     ensure => 'v0.5.3',
-    source  => 'jf/rbenv-gemset'
+    source => 'jf/rbenv-gemset'
   }
 
   # Node.js
-  $node_global = "v0.10"
+  $node_global = 'v0.10'
 
   class { 'nodejs::global':
     version => $node_global

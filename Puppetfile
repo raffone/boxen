@@ -83,3 +83,4 @@ github "vagrant",      "3.0.2"
 github "virtualbox",   "1.0.9"
 github "macvim",       "1.0.0"
 github "vlc",          "1.0.5"
+
