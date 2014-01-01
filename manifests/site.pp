@@ -136,13 +136,10 @@ node default {
   include flux
   include istatmenus4
   include iterm2::dev
-  # include libreoffice
   include mou
-  # include omnigraffle
   include opera
   include skype
   include sourcetree
-  include spotify
   include textexpander
   include transmission
   include transmit
