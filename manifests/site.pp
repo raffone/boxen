@@ -103,7 +103,7 @@ node default {
     version => $ruby_global
   }
 
-  $ruby_gems = [ 'rapido-css', 'sass-globbing', 'oily_png', 'bump' ]
+  $ruby_gems = [ 'rapido-css', 'sass-globbing', 'oily_png', 'bump', 'susy' ]
 
   install_gems { $ruby_gems: }
 
