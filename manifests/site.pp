@@ -86,13 +86,14 @@ node default {
   include ruby::1_9_3
   include ruby::2_0_0
 
-  # common, useful packages
+  # Homebrew
   package {
     [
       'ack',
       'findutils',
       'gnu-tar',
-      'mackup'
+      'mackup',
+      'the_silver_searcher'
     ]:
   }
 
@@ -124,7 +125,7 @@ node default {
     version => $node_global
   }
 
-  nodejs::module { [ 'coffee-script', 'grunt-cli' ]:
+  nodejs::module { [ 'coffee-script', 'grunt-cli', 'bower' ]:
     node_version => $node_global
   }
 
@@ -141,8 +142,11 @@ node default {
   include flux
   include istatmenus4
   include iterm2::dev
+  include launchbar
+  include macvim
   include mou
   include opera
+  include sequel_pro
   include skype
   include sourcetree
   include textexpander
@@ -151,7 +155,6 @@ node default {
   include tunnelblick
   include vagrant
   include virtualbox
-  include macvim
   include vlc
 
 }
