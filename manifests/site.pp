@@ -91,9 +91,7 @@ node default {
     [
       'ack',
       'findutils',
-      'gnu-tar',
-      'mackup',
-      'the_silver_searcher'
+      'gnu-tar'
     ]:
   }
 
@@ -109,7 +107,13 @@ node default {
     version => $ruby_global
   }
 
-  $ruby_gems = [ 'rapido-css', 'sass-globbing', 'oily_png', 'bump', 'susy' ]
+  $ruby_gems = [
+    'rapido-css',
+    'sass-globbing',
+    'oily_png',
+    'susy',
+    'homesick'
+  ]
 
   install_gems { $ruby_gems: }
 
