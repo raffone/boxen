@@ -85,6 +85,7 @@ node default {
   include ruby::1_9_2
   include ruby::1_9_3
   include ruby::2_0_0
+  include ruby::2_1_1
 
   # Homebrew
   package {
@@ -101,7 +102,7 @@ node default {
   }
 
   # Ruby
-  $ruby_global = '1.9.3'
+  $ruby_global = '2.1.1'
 
   class { 'ruby::global':
     version => $ruby_global
