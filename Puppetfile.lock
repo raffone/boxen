@@ -11,7 +11,7 @@ GITHUBTARBALL
 GITHUBTARBALL
   remote: boxen/puppet-boxen
   specs:
-    boxen (3.3.4)
+    boxen (3.3.8)
 
 GITHUBTARBALL
   remote: boxen/puppet-btsync
@@ -231,7 +231,7 @@ GITHUBTARBALL
 DEPENDENCIES
   adium (= 1.3.0)
   alfred (= 1.1.7)
-  boxen (= 3.3.4)
+  boxen (= 3.3.8)
   btsync (= 1.0.0)
   ccleaner (= 1.1.0)
   chrome (= 1.1.2)
