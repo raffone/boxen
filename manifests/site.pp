@@ -81,8 +81,8 @@ node default {
   include nodejs::v0_10
 
   # default ruby versions
-  include ruby::1_8_7
-  include ruby::1_9_2
+  #include ruby::1_8_7
+  #include ruby::1_9_2
   include ruby::1_9_3
   include ruby::2_0_0
   #include ruby::2_1_1
@@ -130,7 +130,14 @@ node default {
     version => $node_global
   }
 
-  nodejs::module { [ 'coffee-script', 'grunt-cli', 'bower' ]:
+  $node_modules = [
+    'coffee-script',
+    'grunt-cli',
+    'mimosa',
+    'bower'
+  ]
+
+  nodejs::module { $node_modules:
     node_version => $node_global
   }
 
