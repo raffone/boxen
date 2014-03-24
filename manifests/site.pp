@@ -106,15 +106,15 @@ node default {
     version => $ruby_global
   }
 
-  $ruby_gems = [
-    'rapido-css',
-    'sass-globbing',
-    'oily_png',
-    'susy',
-    'homesick'
-  ]
+  ruby::gem { "rapido-css":
+    gem     => 'bundler',
+    ruby    => $ruby_global
+  }
 
-  install_gems { $ruby_gems: }
+  ruby::gem { "homesick":
+    gem     => 'homesick',
+    ruby    => $ruby_global
+  }
 
   ruby::plugin { 'rbenv-gemset':
     ensure => 'v0.5.3',
