@@ -81,16 +81,18 @@ node default {
   include nodejs::v0_10
 
   # default ruby versions
-  ruby::version { '1.9.3': }
-  ruby::version { '2.0.0': }
-  ruby::version { '2.1.0': }
+  #ruby::version { '1.9.3': }
+  #ruby::version { '2.0.0': }
+  #ruby::version { '2.1.0': }
+  ruby::version { '2.1.1': }
 
   # Homebrew
   package {
     [
       'ack',
       'findutils',
-      'gnu-tar'
+      'gnu-tar',
+      'p7zip'
     ]:
   }
 
@@ -100,26 +102,26 @@ node default {
   }
 
   # Ruby
-  $ruby_global = '2.0.0'
+  $ruby_global = '2.1.1'
 
   class { 'ruby::global':
     version => $ruby_global
   }
 
-  ruby::gem { "rapido-css":
-    gem     => 'bundler',
-    ruby    => $ruby_global
-  }
+  #ruby::gem { "rapido-css":
+    #gem     => 'bundler',
+    #ruby    => $ruby_global
+  #}
 
   ruby::gem { "homesick":
     gem     => 'homesick',
     ruby    => $ruby_global
   }
 
-  ruby::plugin { 'rbenv-gemset':
-    ensure => 'v0.5.3',
-    source => 'jf/rbenv-gemset'
-  }
+  #ruby::plugin { 'rbenv-gemset':
+    #ensure => 'v0.5.3',
+    #source => 'jf/rbenv-gemset'
+  #}
 
   # Node.js
   $node_global = 'v0.10'
@@ -132,7 +134,8 @@ node default {
     'coffee-script',
     'grunt-cli',
     'mimosa',
-    'bower'
+    'bower',
+    'npm-check-updates'
   ]
 
   nodejs::module { $node_modules:
